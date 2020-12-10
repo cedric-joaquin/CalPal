@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_10_014544) do
+ActiveRecord::Schema.define(version: 2020_12_10_015941) do
 
   create_table "days", force: :cascade do |t|
     t.integer "cal_allowance"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2020_12_10_014544) do
     t.integer "calories"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "day_id"
   end
 
 end
