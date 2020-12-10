@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cal_allowance: 1
+  date: 2020-12-09 17:44:27
+  remaining_calories: 1
+
+two:
+  cal_allowance: 1
+  date: 2020-12-09 17:44:27
+  remaining_calories: 1
