@@ -3,17 +3,18 @@ class Day {
         this.allowance = allowance;
         this.date = date;
     }
+
+    static newDayCard(day) {
+        let div = document.createElement("div");
+        div.className = "day";
+        let h2 = document.createElement("h2");
+        let date = new Date(Date.parse(day.date));
+        h2.innerText = `${date.getMonth()}/${date.getDate()}/${date.getFullYear()}`;
+        div.appendChild(h2);
+        document.body.appendChild(div);
+    }
 }
 
-function newDay(day) {
-    let div = document.createElement("div");
-    div.className = "day";
-    let h2 = document.createElement("h2");
-    let date = new Date(Date.parse(day.date));
-    h2.innerText = `${date.getMonth()}/${date.getDate()}/${date.getFullYear()}`;
-    div.appendChild(h2);
-    document.body.appendChild(div);
-}
 
 function getDays() {
     return fetch('http://localhost:3000/days')
@@ -23,7 +24,7 @@ function getDays() {
 document.addEventListener("DOMContentLoaded", function() {
     getDays().then(days => {
         days.forEach(day => {
-            newDay(day);
+            Day.newDayCard(day);
         })
     })
 });
