@@ -10,8 +10,9 @@ function newDay() {
     div.className = "day"
 }
 
-function fetchDays() {
+function getDays() {
     fetch("localhost:3000/days")
+    .then(resp => resp.json())
 }
 
 document.addEventListener("DOMContentLoaded", function() {
