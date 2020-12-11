@@ -9,7 +9,8 @@ function newDay(day) {
     let div = document.createElement("div");
     div.className = "day";
     let h2 = document.createElement("h2");
-    h2.innerText = `Date: ${day.date}`;
+    let date = new Date(Date.parse(day.date));
+    h2.innerText = `${date.getMonth()}/${date.getDate()}/${date.getFullYear()}`;
     div.appendChild(h2);
     document.body.appendChild(div);
 }
