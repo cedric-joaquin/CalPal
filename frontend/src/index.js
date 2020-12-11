@@ -13,16 +13,15 @@ class Day {
         div.appendChild(h2);
         document.body.appendChild(div);
     }
-}
 
-
-function getDays() {
-    return fetch('http://localhost:3000/days')
-        .then(resp => resp.json());
+    static getDays() {
+        return fetch('http://localhost:3000/days')
+            .then(resp => resp.json());
+    }
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    getDays().then(days => {
+    Day.getDays().then(days => {
         days.forEach(day => {
             Day.newDayCard(day);
         })
