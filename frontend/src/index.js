@@ -68,7 +68,15 @@ class Meal {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    let day = new Day(2000, new Date());
-    let dayCard = Day.newCard(day);
-    let ul = dayCard.querySelector('ul')
+    fetch('http://localhost:3000/days')
+        .then(resp => resp.json())
+        .then(days => { if(Object.keys(days).length == 0) {
+            let day = new Day(2000, new Date());
+            let dayCard = Day.newCard(day);
+            let ul = dayCard.querySelector('ul')
+        } else {
+            Day.getDays().then(day => {
+                Day.newCard(day);
+            });
+        }});
 });
