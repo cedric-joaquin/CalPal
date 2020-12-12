@@ -20,6 +20,14 @@ class Day {
     }
 }
 
+class Meal {
+    constructor(name, calories, day) {
+        this.name = name;
+        this.calores = calories;
+        this.day = day;
+    }
+}
+
 document.addEventListener("DOMContentLoaded", function() {
     Day.getDays().then(days => {
         days.forEach(day => {
