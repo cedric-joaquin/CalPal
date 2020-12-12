@@ -91,7 +91,7 @@ class Meal {
     constructor(name, calories, day) {
         this.name = name;
         this.calories = calories;
-        this.day = day;
+        this.day = day
     }
 
     static postMeal(data) {
@@ -136,4 +136,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }});
 });
 
-newMealBtn.addEventListener("click", )
+newMealBtn.addEventListener("click", e => {
+    e.preventDefault();
+    Meal.postMeal(e.target);
+});
