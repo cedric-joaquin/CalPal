@@ -7,8 +7,6 @@ class Day {
     }
 
     static addDay(day) {
-        let newDay = new Day(day.allowance, day.date);
-
         let configObj = {
             method: "POST",
             headers: {
@@ -57,3 +55,7 @@ document.addEventListener("DOMContentLoaded", function() {
     })
 });
 
+newDayForm.addEventListener('submit', event => {
+    event.preventDefault();
+    Day.addDay(event.target);
+})
