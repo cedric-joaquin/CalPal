@@ -94,7 +94,8 @@ class Meal {
         this.day = day;
     }
 
-    static postMeal(meal) {
+    static postMeal(data) {
+        let meal = new Meal(data);
         fetch('http://localhost:3000/toys', {
             method: 'POST',
             headers: {
