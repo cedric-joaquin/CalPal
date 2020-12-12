@@ -45,7 +45,40 @@ class Day {
 
         let ul = document.createElement("ul");
         div.appendChild(ul)
+
+        //Create Meal Form
+        let form = document.createElement("form");
+        let br = document.createElement("br")
+        form.className = "new-meal"
+
+        // Create Name Input
+        let nameInput = document.createElement('input');
+        nameInput.setAttribute("type", "text");
+        nameInput.setAttribute("name", "name");
+        nameInput.setAttribute("placehodler", "Meal Name");
+
+        // Create Calorie Input
+        let calorieInput = document.createElement('input');
+        calorieInput.setAttribute("type", "number");
+        calorieInput.setAttribute("name", "calories");
+        calorieInput.setAttribute("placeholder", "0 calories");
+
+        // Create Submit Button
+        let submitBtn = document.createElement('input');
+        submitBtn.setAttribute("type", "submit");
+        submitBtn.setAttribute("value", "Add Meal");
+
+        // Append Form Children to Form
+        form.appendChild(nameInput);
+        form.appendChild(br);
+        form.appendChild(calorieInput);
+        form.appendChild(br.cloneNode());
+        form.appendChild(submitBtn);
+
+        div.appendChild(form);
+
         return document.body.appendChild(div);
+
     }
 
     static getDays() {
@@ -57,7 +90,7 @@ class Day {
 class Meal {
     constructor(name, calories, day) {
         this.name = name;
-        this.calores = calories;
+        this.calories = calories;
         this.day = day;
     }
 
@@ -80,3 +113,4 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         }});
 });
+
