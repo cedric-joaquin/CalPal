@@ -28,11 +28,19 @@ class Day {
     static newCard(day) {
         let div = document.createElement("div");
         div.className = "day";
+
         let h2 = document.createElement("h2");
         let date = new Date(Date.parse(day.date));
         h2.innerText = `${date.getMonth()}/${date.getDate()}/${date.getFullYear()}`;
         div.appendChild(h2);
-        document.body.appendChild(div);
+
+        let h3 = document.createElement("h3");
+        h3.innerText = 'Meals'
+        div.appendChild(h3);
+
+        let ul = document.createElement("ul");
+        div.appendChild(ul)
+        return document.body.appendChild(div);
     }
 
     static getDays() {
@@ -47,9 +55,15 @@ class Meal {
         this.calores = calories;
         this.day = day;
     }
+
+    static newMeal(meal) {
+        let li = document.createElement("li");
+        return li.innerText = `${meal.name} - ${meal.calories} Calories`;
+    }
 }
 
 document.addEventListener("DOMContentLoaded", function() {
     let day = new Day(2000, new Date());
     let dayCard = Day.newCard(day);
+    let ul = dayCard.querySelector('ul')
 });
