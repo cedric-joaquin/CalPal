@@ -35,6 +35,10 @@ class Day {
         h2.innerText = `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
         div.appendChild(h2);
 
+        let calAllowance = document.createElement("h3") ; 
+        calAllowance.innerText= `Daily Caloric Allowance: ${day.allowance} calories`
+        div.appendChild(calAllowance);
+
         let h3 = document.createElement("h3");
         h3.innerText = 'Meals'
         div.appendChild(h3);
