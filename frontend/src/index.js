@@ -67,6 +67,7 @@ class Day {
         let submitBtn = document.createElement('input');
         submitBtn.setAttribute("type", "submit");
         submitBtn.setAttribute("value", "Add Meal");
+        submitBtn.id = "add-meal-button"
 
         // Append Form Children to Form
         form.appendChild(nameInput);
@@ -78,7 +79,6 @@ class Day {
         div.appendChild(form);
 
         return document.body.appendChild(div);
-
     }
 
     static getDays() {
