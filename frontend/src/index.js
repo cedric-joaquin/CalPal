@@ -55,7 +55,7 @@ class Day {
         let nameInput = document.createElement('input');
         nameInput.setAttribute("type", "text");
         nameInput.setAttribute("name", "name");
-        nameInput.setAttribute("placehodler", "Meal Name");
+        nameInput.setAttribute("placeholder", "Meal Name");
 
         // Create Calorie Input
         let calorieInput = document.createElement('input');
