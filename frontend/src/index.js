@@ -4,6 +4,25 @@ class Day {
         this.date = date;
     }
 
+    static addDay(day) {
+        let newDay = new Day(day.allowance, day.date);
+
+        let configObj = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+            },
+            body: JSON.stringify({
+                cal_allowance: newDay.allowance,
+                date: day.date
+            })
+        }
+
+        fetch("http://localhost:3000/days", configObj)
+            .then
+    }
+
     static newDayCard(day) {
         let div = document.createElement("div");
         div.className = "day";
@@ -35,3 +54,4 @@ document.addEventListener("DOMContentLoaded", function() {
         })
     })
 });
+
