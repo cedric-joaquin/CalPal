@@ -94,11 +94,28 @@ class Meal {
         this.day = day;
     }
 
+    static postMeal(meal) {
+        fetch('http://localhost:3000/toys', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json'
+            },
+            body: JSON.stringify({
+                'meal': meal.name,
+                'calories': meal.calories,
+                'day': meal.day
+            })
+        })
+    }
+
     static newMeal(meal) {
         let li = document.createElement("li");
         return li.innerText = `${meal.name} - ${meal.calories} Calories`;
     }
 }
+
+let newMealBtn = document.getElementById("add-meal-button");
 
 document.addEventListener("DOMContentLoaded", function() {
     fetch('http://localhost:3000/days')
@@ -114,3 +131,4 @@ document.addEventListener("DOMContentLoaded", function() {
         }});
 });
 
+newMealBtn.addEventListener("click", )
