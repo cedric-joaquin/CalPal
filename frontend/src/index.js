@@ -1,3 +1,5 @@
+let newDayForm = document.querySelector("#add-day-form");
+
 class Day {
     constructor(allowance, date) {
         this.allowance = allowance;
