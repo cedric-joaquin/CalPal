@@ -26,12 +26,13 @@ class Day {
     }
 
     static newCard(day) {
+        let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         let div = document.createElement("div");
         div.className = "day";
 
         let h2 = document.createElement("h2");
         let date = new Date(Date.parse(day.date));
-        h2.innerText = `${date.getMonth()}/${date.getDate()}/${date.getFullYear()}`;
+        h2.innerText = `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
         div.appendChild(h2);
 
         let h3 = document.createElement("h3");
