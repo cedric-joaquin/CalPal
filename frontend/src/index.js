@@ -1,5 +1,3 @@
-let newDayForm = document.querySelector('.add-day-form');
-
 class Day {
     constructor(allowance, date) {
         this.allowance = allowance;
@@ -53,10 +51,5 @@ class Meal {
 
 document.addEventListener("DOMContentLoaded", function() {
     let day = new Day(2000, new Date());
-    Day.newCard(day);
+    let dayCard = Day.newCard(day);
 });
-
-newDayForm.addEventListener('submit', event => {
-    event.preventDefault();
-    Day.addDay(event.target);
-})
