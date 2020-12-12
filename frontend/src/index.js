@@ -107,6 +107,10 @@ class Meal {
                 'day': meal.day
             })
         })
+        .then(resp => resp.json())
+        .then(meal => {
+            this.newMeal(meal);
+        });
     }
 
     static newMeal(meal) {
