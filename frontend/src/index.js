@@ -95,17 +95,15 @@ class Meal {
     }
 
     static postMeal(data) {
-        let meal = new Meal(data);
-        fetch('http://localhost:3000/toys', {
+        fetch('http://localhost:3000/meals', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                Accept: 'application/json'
+                'Accept': 'application/json'
             },
             body: JSON.stringify({
-                'meal': meal.name,
-                'calories': meal.calories,
-                'day': meal.day
+                name: data.name.value,
+                calories: data.calories.value,
             })
         })
         .then(resp => resp.json())
@@ -120,23 +118,25 @@ class Meal {
     }
 }
 
-let newMealBtn = document.getElementById("add-meal-button");
 
 document.addEventListener("DOMContentLoaded", function() {
     fetch('http://localhost:3000/days')
-        .then(resp => resp.json())
-        .then(days => { if(Object.keys(days).length == 0) {
-            let day = new Day(2000, new Date());
-            let dayCard = Day.newCard(day);
-            let ul = dayCard.querySelector('ul')
-        } else {
-            Day.getDays().then(day => {
-                Day.newCard(day);
-            });
-        }});
+    .then(resp => resp.json())
+    .then(days => { if(Object.keys(days).length == 0) {
+        let day = new Day(2000, new Date());
+        let dayCard = Day.newCard(day);
+        let ul = dayCard.querySelector('ul')
+        let mealForm = document.querySelector('.new-meal');
+    
+        mealForm.addEventListener('submit', e => {
+            e.preventDefault();
+            Meal.postMeal(e.target);
+        });
+    } else {
+        Day.getDays().then(day => {
+            Day.newCard(day);
+        });
+    }});
+
 });
 
-newMealBtn.addEventListener("click", e => {
-    e.preventDefault();
-    Meal.postMeal(e.target);
-});
