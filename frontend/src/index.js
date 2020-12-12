@@ -1,4 +1,4 @@
-let newDayForm = document.querySelector("#add-day-form");
+let newDayForm = document.querySelector('.add-day-form');
 
 class Day {
     constructor(allowance, date) {
@@ -14,16 +14,20 @@ class Day {
                 "Accept": "application/json",
             },
             body: JSON.stringify({
-                cal_allowance: newDay.allowance,
-                date: day.date
+                cal_allowance: day.allowance.value,
+                date: day.date.value
             })
         }
 
         fetch("http://localhost:3000/days", configObj)
-            .then
+            .then(resp => resp.json())
+            .then(day => {
+                let newDay = new Day(day);
+                Day.addDay(newDay);
+            })
     }
 
-    static newDayCard(day) {
+    static newCard(day) {
         let div = document.createElement("div");
         div.className = "day";
         let h2 = document.createElement("h2");
@@ -48,11 +52,8 @@ class Meal {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    Day.getDays().then(days => {
-        days.forEach(day => {
-            Day.newDayCard(day);
-        })
-    })
+    let day = new Day(2000, new Date());
+    Day.newCard(day);
 });
 
 newDayForm.addEventListener('submit', event => {
