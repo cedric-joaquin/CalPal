@@ -77,7 +77,7 @@ class Day {
         form.appendChild(submitBtn);
 
         div.appendChild(form);
-
+        
         return document.body.appendChild(div);
     }
 
@@ -95,7 +95,7 @@ class Meal {
     }
 
     static postMeal(data) {
-        fetch('http://localhost:3000/meals', {
+        return fetch('http://localhost:3000/meals', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -113,8 +113,10 @@ class Meal {
     }
 
     static newMeal(meal) {
+        let ul = document.querySelector('div.day ul');
         let li = document.createElement("li");
-        return li.innerText = `${meal.name} - ${meal.calories} Calories`;
+        li.innerText = `${meal.name} - ${meal.calories} Calories`;
+        ul.appendChild(li);
     }
 }
 
@@ -127,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function() {
         let dayCard = Day.newCard(day);
         let ul = dayCard.querySelector('ul')
         let mealForm = document.querySelector('.new-meal');
-    
+
         mealForm.addEventListener('submit', e => {
             e.preventDefault();
             Meal.postMeal(e.target);
