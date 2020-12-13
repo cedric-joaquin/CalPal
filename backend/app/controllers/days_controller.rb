@@ -8,4 +8,9 @@ class DaysController < ApplicationController
         day = Day.find_by(id: params[:id])
         render json: day, include:[:meals]
     end
+
+    def create
+        day = Day.create(cal_allowance: params[:cal_allowance], date:params[:date])
+        render json: day
+    end
 end
