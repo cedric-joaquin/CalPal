@@ -105,6 +105,11 @@ class Meal {
         this.day = day
     }
 
+    static getMeals() {
+        return fetch('http://localhost:3000/meals')
+            .then(resp => resp.json())
+    }
+
     static postMeal(data) {
         return fetch('http://localhost:3000/meals', {
             method: 'POST',
@@ -138,9 +143,17 @@ document.addEventListener("DOMContentLoaded", function() {
     .then(days => { if(Object.keys(days).length == 0) {
         Day.postDay(new Day(2000, new Date()));
     } else {
-        Day.getDays().then(day => {
-            Day.newCard(day);
+        Day.getDays().then(days => {
+            days.forEach(day => {
+                Day.newCard(day);
+                Meal.getMeals().then(meals => {
+                    meals.forEach(meal => {
+                        if (meal.day_id == day.id) {
+                            Meal.newMeal(meal);
+                        }
+                    })
+                })
+            });
         });
     }});
-
 });
