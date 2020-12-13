@@ -18,7 +18,7 @@ class Day {
         })
         .then(resp => resp.json())
         .then(day => {
-            this.newCard(day);
+            return this.newCard(day);
         });
     }
 
@@ -61,18 +61,31 @@ class Day {
         calorieInput.setAttribute("name", "calories");
         calorieInput.setAttribute("placeholder", "0 calories");
 
+        // Hidden day input
+        let dayInput = document.createElement('input');
+        dayInput.setAttribute('type', 'hidden');
+        dayInput.setAttribute('name', 'day_id');
+        dayInput.setAttribute('value', `${day.id}`);
+
         // Create Submit Button
         let submitBtn = document.createElement('input');
         submitBtn.setAttribute("type", "submit");
         submitBtn.setAttribute("value", "Add Meal");
         submitBtn.id = "add-meal-button"
 
-        // Append Form Children to Form
+        // Append Inputs to Form
         form.appendChild(nameInput);
         form.appendChild(br);
         form.appendChild(calorieInput);
         form.appendChild(br.cloneNode());
+        form.appendChild(dayInput);
         form.appendChild(submitBtn);
+
+        // Form event listener
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            Meal.postMeal(e.target);
+        })
 
         div.appendChild(form);
         
@@ -102,6 +115,7 @@ class Meal {
             body: JSON.stringify({
                 name: data.name.value,
                 calories: data.calories.value,
+                day_id: data.day_id.value
             })
         })
         .then(resp => resp.json())
@@ -122,14 +136,7 @@ document.addEventListener("DOMContentLoaded", function() {
     fetch('http://localhost:3000/days')
     .then(resp => resp.json())
     .then(days => { if(Object.keys(days).length == 0) {
-        let day = new Day(2000, new Date());
-        Day.postDay(day);
-        let mealForm = document.querySelector('.new-meal');
-
-        mealForm.addEventListener('submit', e => {
-            e.preventDefault();
-            Meal.postMeal(e.target);
-        });
+        Day.postDay(new Day(2000, new Date()));
     } else {
         Day.getDays().then(day => {
             Day.newCard(day);
@@ -137,4 +144,3 @@ document.addEventListener("DOMContentLoaded", function() {
     }});
 
 });
-
