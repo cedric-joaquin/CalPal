@@ -132,7 +132,13 @@ class Meal {
     static newMeal(meal) {
         let ul = document.querySelector('div.day ul');
         let li = document.createElement("li");
-        li.innerText = `${meal.name} - ${meal.calories} Calories`;
+
+        let deleteBtn = document.createElement('button');
+        deleteBtn.innerText = 'Delete Meal'
+        deleteBtn.addEventListener('click')
+
+        li.innerHTML = `${meal.name} - ${meal.calories} Calories `;
+        li.appendChild(deleteBtn);
         ul.appendChild(li);
     }
 }
