@@ -5,7 +5,8 @@ class MealsController < ApplicationController
     end
 
     def create
-        meal = Meal.create(name: params[:name], calories: params[:calories])
+        binding.pry
+        meal = Meal.create(name: params[:name], calories: params[:calories], day_id: params[:day_id])
         render json: meal
     end
 end
