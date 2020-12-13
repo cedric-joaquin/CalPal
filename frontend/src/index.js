@@ -4,31 +4,29 @@ class Day {
         this.date = date;
     }
 
-    static addDay(day) {
-        let configObj = {
-            method: "POST",
+    static postDay(day) {
+        return fetch('http://localhost:3000/days', {
+            method: 'POST',
             headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json",
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
             },
             body: JSON.stringify({
-                cal_allowance: day.allowance.value,
-                date: day.date.value
+                cal_allowance: day.allowance,
+                date: day.date,
             })
-        }
-
-        fetch("http://localhost:3000/days", configObj)
-            .then(resp => resp.json())
-            .then(day => {
-                let newDay = new Day(day);
-                Day.addDay(newDay);
-            })
+        })
+        .then(resp => resp.json())
+        .then(day => {
+            this.newCard(day);
+        });
     }
 
     static newCard(day) {
         let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         let div = document.createElement("div");
-        div.className = "day";
+        div.className = 'day';
+        div.id = `${day.id}`
 
         let h2 = document.createElement("h2");
         let date = new Date(Date.parse(day.date));
@@ -36,7 +34,7 @@ class Day {
         div.appendChild(h2);
 
         let calAllowance = document.createElement("h3") ; 
-        calAllowance.innerText= `Daily Caloric Allowance: ${day.allowance} calories`
+        calAllowance.innerText= `Daily Caloric Allowance: ${day.cal_allowance} calories`
         div.appendChild(calAllowance);
 
         let h3 = document.createElement("h3");
@@ -120,14 +118,12 @@ class Meal {
     }
 }
 
-
 document.addEventListener("DOMContentLoaded", function() {
     fetch('http://localhost:3000/days')
     .then(resp => resp.json())
     .then(days => { if(Object.keys(days).length == 0) {
         let day = new Day(2000, new Date());
-        let dayCard = Day.newCard(day);
-        let ul = dayCard.querySelector('ul')
+        Day.postDay(day);
         let mealForm = document.querySelector('.new-meal');
 
         mealForm.addEventListener('submit', e => {
