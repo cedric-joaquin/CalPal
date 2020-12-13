@@ -129,16 +129,34 @@ class Meal {
         });
     }
 
+    static deleteMeal(meal) {
+        fetch(`http://localhost:3000/meals/${meal.id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                id: meal.id
+            })
+        })
+        .then( () => {
+            document.getElementById(`meal-${meal.id}`).remove();
+        })
+    }
+
     static newMeal(meal) {
         let ul = document.querySelector('div.day ul');
         let li = document.createElement("li");
 
         let deleteBtn = document.createElement('button');
         deleteBtn.innerText = 'Delete Meal'
-        deleteBtn.addEventListener('click')
-
-        li.innerHTML = `${meal.name} - ${meal.calories} Calories `;
+        
+        
+        li.id = `meal-${meal.id}`
+        li.innerText = `${meal.name} - ${meal.calories} Calories `;
         li.appendChild(deleteBtn);
+        deleteBtn.addEventListener('click', e => Meal.deleteMeal(meal));
         ul.appendChild(li);
     }
 }
