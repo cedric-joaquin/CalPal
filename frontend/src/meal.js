@@ -87,9 +87,10 @@ class Meal {
         mealId.setAttribute('name', 'id');
         mealId.setAttribute('value', `${meal.id}`);
 
-        let editBtn = document.createElement('input');
+        let editBtn = document.createElement('button');
         editBtn.setAttribute('type', 'submit');
-        editBtn.setAttribute('value', 'Edit Meal');
+        editBtn.className = 'btn';
+        editBtn.innerHTML = '<i class="far fa-check-square"></i>';
 
         form.appendChild(editName);
         form.appendChild(editCalories);
