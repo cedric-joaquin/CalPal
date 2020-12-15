@@ -107,10 +107,10 @@ class Meal {
     static renderMeal(meal) {
         let li = document.createElement("li");
         let mealElement = document.getElementById(`meal-${meal.id}`);
-        let editBtn = document.createElement('button');
-        let deleteBtn = document.createElement('button');
-        editBtn.innerText = 'Edit Meal'
-        deleteBtn.innerText = 'Delete Meal'
+        let editBtn = document.createElement('i');
+        let deleteBtn = document.createElement('i');
+        editBtn.className ='far fa-edit';
+        deleteBtn.className = 'far fa-trash-alt';
         
         li.id = `meal-${meal.id}`
         li.innerText = `${meal.name} - ${meal.calories} Calories `;
