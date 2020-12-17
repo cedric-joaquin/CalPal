@@ -10,7 +10,7 @@ class DaysController < ApplicationController
     end
 
     def create
-        day = Day.create(cal_allowance: params[:cal_allowance], date:params[:date])
+        day = Day.create(cal_allowance: params[:cal_allowance], date:params[:date], remaining_calories:params[:remaining_calories])
         render json: day
     end
 end
