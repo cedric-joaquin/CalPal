@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
     } else {
         Day.getDays().then(days => {
             days.forEach(day => {
-                Day.newCard(day);
+                Day.renderCard(day);
                 Meal.getMeals().then(meals => {
                     meals.forEach(meal => {
                         if (meal.day_id == day.id) {

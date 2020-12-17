@@ -26,6 +26,7 @@ class Meal {
         .then(resp => resp.json())
         .then(meal => {
             this.renderMeal(meal);
+            Day.updateTotal();
         });
     }
 
@@ -42,6 +43,7 @@ class Meal {
         })
         .then( () => {
             document.getElementById(`meal-${meal.id}`).remove();
+            Day.updateTotal();
         })
     }
 
@@ -61,6 +63,7 @@ class Meal {
             .then(resp => resp.json())
             .then(meal => {
                 this.renderMeal(meal)
+                Day.updateTotal();
             })
     }
 

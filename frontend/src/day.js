@@ -20,7 +20,7 @@ class Day {
         .then(resp => resp.json())
         .then(day => {
             document.querySelector('.welcome-card').remove();
-            return this.newCard(day);
+            return this.renderCard(day);
         });
     }
     
@@ -73,7 +73,14 @@ class Day {
         document.body.appendChild(div);
     }
 
-    static newCard(day) {
+    static updateTotal() {
+        let total = document.getElementById('total');
+        Day.getDays().then(days => {
+            total.innerText = `Remaining Calories: ${days[0].remaining_calories}`
+        })
+    }
+
+    static renderCard(day) {
         let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         let div = document.createElement("div");
         div.className = 'day';
@@ -90,6 +97,7 @@ class Day {
 
         let remainingCal = document.createElement('h3');
         remainingCal.innerText = `Remaining Calories: ${day.remaining_calories}`;
+        remainingCal.id = 'total'
         div.appendChild(remainingCal);
 
         let h3 = document.createElement("h3");
