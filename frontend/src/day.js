@@ -14,6 +14,7 @@ class Day {
             body: JSON.stringify({
                 cal_allowance: day.allowance.value,
                 date: day.date.value,
+                remaining_calories: day.allowance.value
             })
         })
         .then(resp => resp.json())
@@ -22,7 +23,7 @@ class Day {
             return this.newCard(day);
         });
     }
-
+    
     static welcomeCard() {
         let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         let div = document.createElement("div");
@@ -86,6 +87,10 @@ class Day {
         let calAllowance = document.createElement("h3") ; 
         calAllowance.innerText= `Daily Caloric Allowance: ${day.cal_allowance} calories`
         div.appendChild(calAllowance);
+
+        let remainingCal = document.createElement('h3');
+        remainingCal.innerText = `Remaining Calories: ${day.remaining_calories}`;
+        div.appendChild(remainingCal);
 
         let h3 = document.createElement("h3");
         h3.innerText = 'Meals'
