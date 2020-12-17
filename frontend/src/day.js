@@ -12,14 +12,64 @@ class Day {
                 'Accept': 'application/json'
             },
             body: JSON.stringify({
-                cal_allowance: day.allowance,
-                date: day.date,
+                cal_allowance: day.allowance.value,
+                date: day.date.value,
             })
         })
         .then(resp => resp.json())
         .then(day => {
+            document.querySelector('.welcome-card').remove();
             return this.newCard(day);
         });
+    }
+
+    static welcomeCard() {
+        let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        let div = document.createElement("div");
+        div.className = 'welcome-card';
+        
+        let h2 = document.createElement("h2");
+        let date = new Date();
+        h2.innerText = `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+        div.appendChild(h2);
+
+        let h3 = document.createElement('h3');
+        h3.innerText = 'Welcome to CalPal, to get started please submit your daily calorie goal below:'
+        div.appendChild(h3);
+
+        let form = document.createElement('form');
+        let br = document.createElement('br');
+        form.className = 'calorie-goal';
+
+        let calInput = document.createElement('input');
+        calInput.setAttribute('type', 'number');
+        calInput.setAttribute('name', 'allowance');
+        calInput.setAttribute('placeholder', '2000 cals');
+
+        let dayInput = document.createElement('input');
+        dayInput.setAttribute('type', 'hidden');
+        dayInput.setAttribute('name', 'date');
+        dayInput.setAttribute('value', date)
+
+        let submitBtn = document.createElement('button');
+        submitBtn.className = 'btn';
+        submitBtn.setAttribute('type', 'submit');
+        submitBtn.innerText = 'Start Tracking';
+
+        form.appendChild(calInput);
+        form.append(dayInput);
+        form.appendChild(br);
+        form.appendChild(submitBtn);
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            console.log(e.target);
+            this.postDay(e.target);
+        });
+
+        div.appendChild(form);
+
+        document.body.appendChild(div);
     }
 
     static newCard(day) {
