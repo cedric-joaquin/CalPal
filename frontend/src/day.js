@@ -100,9 +100,12 @@ class Day {
         remainingCal.id = 'total'
         div.appendChild(remainingCal);
 
-        let h3 = document.createElement("h3");
-        h3.innerText = 'Meals'
-        div.appendChild(h3);
+        let mealDiv = document.createElement('div');
+        mealDiv.className = 'meals'
+        let mealDivTitle = document.createElement('h3')
+        mealDivTitle.innerText = 'Meals';
+        mealDiv.appendChild(mealDivTitle);
+        div.appendChild(mealDiv);
 
         let ul = document.createElement("ul");
         div.appendChild(ul)

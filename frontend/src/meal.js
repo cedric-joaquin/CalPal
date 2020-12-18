@@ -129,8 +129,8 @@ class Meal {
             mealElement.innerText = ""
             mealElement.appendChild(entry);          
         } else {
-            let ul = document.querySelector('div.day ul');
-            ul.appendChild(entry);
+            let mealDiv = document.querySelector('div.meals');
+            mealDiv.appendChild(entry);
         }
     }
 }
