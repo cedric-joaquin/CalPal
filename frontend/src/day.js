@@ -74,10 +74,15 @@ class Day {
     }
 
     static updateTotal() {
-        let total = document.getElementById('total');
+        let remaining = document.querySelector('span.remaining');
         Day.getDays().then(days => {
-            total.innerText = `Remaining Calories: ${days[0].remaining_calories}`
+            remaining.innerText = ` ${days[0].remaining_calories} Calories`
         })
+        if (day.remaining_calories > 0) {
+            remaining.style.color = '#17F665'
+        } else {
+            remaining.style.color = '#F7390B'
+        }
     }
 
     static renderCard(day) {
@@ -96,8 +101,17 @@ class Day {
         div.appendChild(calAllowance);
 
         let remainingCal = document.createElement('h3');
-        remainingCal.innerHTML = `Remaining Calories: ${day.remaining_calories} Calories<br><br>`;
+        let calCount = document.createElement('span');
+        calCount.className = 'remaining'
+        calCount.innerText = ` ${day.remaining_calories} Calories`
+        if (day.remaining_calories > 0) {
+            calCount.style.color = '#17F665'
+        } else {
+            calCount.style.color = '#F7390B'
+        }
+        remainingCal.innerHTML = `Remaining Calories:`;
         remainingCal.id = 'total'
+        remainingCal.appendChild(calCount);
         div.appendChild(remainingCal);
 
         let mealDiv = document.createElement('div');
@@ -106,9 +120,6 @@ class Day {
         mealDivTitle.innerHTML = 'Meals<br>';
         mealDiv.appendChild(mealDivTitle);
         div.appendChild(mealDiv);
-
-        let ul = document.createElement("ul");
-        div.appendChild(ul)
 
         //Create Meal Form
         let form = document.createElement("form");
