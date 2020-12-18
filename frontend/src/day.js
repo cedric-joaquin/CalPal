@@ -77,12 +77,12 @@ class Day {
         let remaining = document.querySelector('span.remaining');
         Day.getDays().then(days => {
             remaining.innerText = ` ${days[0].remaining_calories} Calories`
+            if (days[0].remaining_calories > 0) {
+                remaining.style.color = '#17F665'
+            } else {
+                remaining.style.color = '#F7390B'
+            }
         })
-        if (day.remaining_calories > 0) {
-            remaining.style.color = '#17F665'
-        } else {
-            remaining.style.color = '#F7390B'
-        }
     }
 
     static renderCard(day) {
