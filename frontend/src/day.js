@@ -88,7 +88,7 @@ class Day {
 
         let h2 = document.createElement("h2");
         let date = new Date(Date.parse(day.date));
-        h2.innerText = `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+        h2.innerHTML = `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}<br><br>`;
         div.appendChild(h2);
 
         let calAllowance = document.createElement("h3") ; 
@@ -96,14 +96,14 @@ class Day {
         div.appendChild(calAllowance);
 
         let remainingCal = document.createElement('h3');
-        remainingCal.innerText = `Remaining Calories: ${day.remaining_calories}`;
+        remainingCal.innerHTML = `Remaining Calories: ${day.remaining_calories} Calories<br><br>`;
         remainingCal.id = 'total'
         div.appendChild(remainingCal);
 
         let mealDiv = document.createElement('div');
         mealDiv.className = 'meals'
         let mealDivTitle = document.createElement('h3')
-        mealDivTitle.innerText = 'Meals';
+        mealDivTitle.innerHTML = 'Meals<br>';
         mealDiv.appendChild(mealDivTitle);
         div.appendChild(mealDiv);
 
