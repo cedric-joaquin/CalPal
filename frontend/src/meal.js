@@ -68,8 +68,8 @@ class Meal {
     }
 
     static renderEditor(meal) {
-        let li = document.getElementById(`meal-${meal.id}`);
-        li.innerHTML = ''
+        let entry = document.getElementById(`meal-${meal.id}`);
+        entry.innerHTML = ''
 
         let form = document.createElement('form');
         form.className = `edit-meal-${meal.id}`
@@ -100,7 +100,7 @@ class Meal {
         form.appendChild(mealId);
         form.appendChild(editBtn);
 
-        li.appendChild(form);
+        entry.appendChild(form);
 
         form.addEventListener('submit', e => {
             e.preventDefault();
@@ -109,27 +109,28 @@ class Meal {
     }
 
     static renderMeal(meal) {
-        let li = document.createElement("li");
+        let entry = document.createElement("div");
         let mealElement = document.getElementById(`meal-${meal.id}`);
         let editBtn = document.createElement('i');
         let deleteBtn = document.createElement('i');
         editBtn.className ='far fa-edit';
         deleteBtn.className = 'far fa-trash-alt';
         
-        li.id = `meal-${meal.id}`
-        li.innerText = `${meal.name} - ${meal.calories} Calories `;
+        entry.id = `meal-${meal.id}`
+        entry.className = 'meal'
+        entry.innerText = `${meal.name} - ${meal.calories} Calories `;
         
-        li.appendChild(editBtn);
-        li.appendChild(deleteBtn);
+        entry.appendChild(editBtn);
+        entry.appendChild(deleteBtn);
         editBtn.addEventListener('click', e => Meal.renderEditor(meal));
         deleteBtn.addEventListener('click', e => Meal.deleteMeal(meal));
         
         if (mealElement) {
             mealElement.innerText = ""
-            mealElement.appendChild(li);          
+            mealElement.appendChild(entry);          
         } else {
             let ul = document.querySelector('div.day ul');
-            ul.appendChild(li);
+            ul.appendChild(entry);
         }
     }
 }

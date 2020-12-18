@@ -83,7 +83,7 @@ class Day {
     static renderCard(day) {
         let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         let div = document.createElement("div");
-        div.className = 'day';
+        div.className = 'container';
         div.id = `${day.id}`
 
         let h2 = document.createElement("h2");
