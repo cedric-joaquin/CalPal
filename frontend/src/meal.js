@@ -1,10 +1,4 @@
 class Meal {
-    constructor(name, calories, day) {
-        this.name = name;
-        this.calories = calories;
-        this.day = day
-    }
-
     static getMeals() {
         return fetch('http://localhost:3000/meals')
             .then(resp => resp.json())

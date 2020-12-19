@@ -1,9 +1,4 @@
 class Day {
-    constructor(allowance, date) {
-        this.allowance = allowance;
-        this.date = date;
-    }
-
     static postDay(day) {
         return fetch('http://localhost:3000/days', {
             method: 'POST',
